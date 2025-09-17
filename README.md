@@ -1,178 +1,127 @@
-# CPP SHELL
+# C++ Shell Project 🚀
 
-A feature-rich, Unix-like shell implementation written in C++ with support for command execution, pipelines, history management, and tab completion.
+A feature-rich, Unix-like shell developed in C++ that supports command execution, pipelines, I/O redirection, history management, and tab completion.
 
-## Features
+-----
 
-### Core Shell Features
-- **Interactive Command Line**: Full readline support with command history navigation
-- **Built-in Commands**: `exit`, `echo`, `type`, `pwd`, `cd`, `history`
-- **External Command Execution**: Run any executable from PATH
-- **Pipeline Support**: Chain commands with `|` operator
-- **Tab Completion**: Auto-complete commands and executables from PATH
-- **Quote Handling**: Support for single quotes, double quotes, and escape sequences
-- **I/O Redirection**: Basic output redirection support in echo command
+## \#\# Features
 
-### Advanced Features
-- **Command History**: Persistent command history with file support
-- **Path Resolution**: Automatic executable discovery from PATH environment variable
-- **Home Directory Support**: `~` expansion in cd command
-- **Signal Handling**: Proper EOF (Ctrl+D) handling
-- **Error Handling**: Comprehensive error messages and exit codes
+### **Core Functionality**
 
-## Project Structure
+  * **Interactive Command Line**: Full readline support with command history navigation.
+  * **Built-in Commands**: `exit`, `echo`, `type`, `pwd`, `cd`, and `history`.
+  * **External Command Execution**: Run any executable from your system's `$PATH`.
+  * **Pipelines**: Chain multiple commands together using the `|` operator.
+  * **I/O Redirection**: Redirect output of commands using `>` and `>>`.
+  * **Tab Completion**: Autocomplete commands and file paths by pressing the `Tab` key.
+  * **Quote Handling**: Properly handles single (`'`) and double (`"`) quotes.
 
-```
-src/
-├── shell.h          # Main header file with declarations
-├── main.cpp         # Main shell loop and built-in commands
-├── completion.cpp   # Tab completion system
-├── parser.cpp       # Command parsing and text processing
-├── executor.cpp     # Command execution and pipeline handling
-├── history.cpp      # History management implementation
-```
+### **Advanced Capabilities**
 
-## Prerequisites
+  * **Persistent History**: Command history is saved to a file (`~/.cpp_shell_history`) and loaded on startup.
+  * **Tilde Expansion**: The `~` character is automatically expanded to the home directory.
+  * **Signal Handling**: Gracefully handles `Ctrl+D` (EOF) to exit the shell.
+  * **Robust Error Handling**: Provides clear error messages for common issues like command not found.
 
-### System Requirements
-- Linux/Unix-like operating system
-- C++17 compatible compiler (GCC 7+ or Clang 5+)
-- GNU Readline library
+-----
 
-### Installing Dependencies
+## \#\# Getting Started
 
-**Ubuntu/Debian:**
-```bash
-sudo apt-get update
-sudo apt-get install build-essential libreadline-dev
-```
+### **Prerequisites**
 
+  * A Unix-like operating system (Linux, macOS).
+  * A C++17 compatible compiler (e.g., GCC 7+ or Clang 5+).
+  * The GNU Readline library for interactive input.
 
-## Building and Running
+### **Installation**
 
-### Quick Start
-```bash
-# Clone or download the project
-git clone <repository-url>
-cd CPP-SHELL
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/your-repo-name.git
+    cd your-repo-name
+    ```
+2.  **Install dependencies (on Debian/Ubuntu):**
+    ```bash
+    sudo apt-get update
+    sudo apt-get install build-essential libreadline-dev
+    ```
+3.  **Compile the project:**
+    ```bash
+    g++ -std=c++17 -o cpp-shell src/*.cpp -lreadline
+    ```
+4.  **Run the shell:**
+    ```bash
+    ./cpp-shell
+    ```
 
-# Build and run the code
-chmod +x your_program.sh
-./your_program.sh
-```
+-----
 
-## Usage Examples
+## \#\# Usage Examples
 
-### Basic Commands
-```bash
+### **Basic Commands**
+
+```sh
 $ pwd
-/home/user/shell
+/home/user/CPP-SHELL
 
-$ echo "Hello World"
-Hello World
-
-$ type ls
-ls is /bin/ls
-
-$ cd /tmp
-$ pwd
-/tmp
+$ echo "Hello from the C++ Shell!"
+Hello from the C++ Shell!
 
 $ cd ~
 $ pwd
 /home/user
 ```
 
-### Pipeline Examples
-```bash
-$ ls | grep .cpp
-main.cpp
-completion.cpp
-parser.cpp
+### **Pipelines and Redirection**
 
-$ echo "test" | cat
-test
+```sh
+# Find all C++ source files
+$ ls -l src | grep .cpp
+
+# Save output to a file
+$ echo "This is a test." > output.txt
 ```
 
-### History Management
-```bash
-$ history          # Show all history
-$ history 5        # Show last 5 commands
-$ history -w file  # Write history to file
-$ history -r file  # Read history from file
-$ history -a file  # Append history to file
+### **History Management**
+
+```sh
+# Display the last 10 commands
+$ history 10
+
+# Search history
+$ history | grep "cd"
 ```
 
-### Tab Completion
-- Press `Tab` to auto-complete commands
-- Works with both built-in commands and external executables
-- Supports partial command matching
+-----
 
-## Built-in Commands
+## \#\# Built-in Commands
 
-| Command | Description | Usage |
-|---------|-------------|--------|
-| `exit [0]` | Exit the shell | `exit` or `exit 0` |
-| `pwd` | Print working directory | `pwd` |
-| `cd [path]` | Change directory | `cd`, `cd /path`, `cd ~` |
-| `echo [args]` | Print arguments | `echo Hello World` |
-| `type [cmd]` | Show command type/location | `type ls` |
-| `history [n]` | Show command history | `history`, `history 10` |
+| Command   | Description                                         | Usage Example             |
+| :-------- | :-------------------------------------------------- | :------------------------ |
+| `cd`      | Change the current directory                        | `cd /path/to/dir` or `cd ~` |
+| `pwd`     | Print the working directory                         | `pwd`                     |
+| `echo`    | Display a line of text                              | `echo Hello World`        |
+| `exit`    | Exit the shell                                      | `exit`                    |
+| `type`    | Display how a command name would be interpreted     | `type ls`                 |
+| `history` | Show command history                                | `history` or `history 5`  |
 
-### History Command Options
-- `history -w file` - Write current history to file
-- `history -r file` - Read history from file
-- `history -a file` - Append new history entries to file
+-----
 
-## Environment Variables
+## \#\# Limitations
 
-The shell respects the following environment variables:
-- `PATH` - Used for executable discovery and tab completion
-- `HOME` - Used for `~` expansion in cd command
-- `HISTFILE` - Persistent history file location
+This project is an educational implementation and currently lacks some advanced shell features, including:
 
-## Configuration
+  * Job control (`&`, `jobs`, `fg`, `bg`).
+  * Variable expansion (`$VAR`) and command substitution.
+  * Wildcard/glob expansion (`*`, `?`).
+  * Complex control structures (`if`, `while`, `for`).
 
-### Setting Up History Persistence
-```bash
-# In your .bashrc or .profile
-export HISTFILE=~/.shell_history
+-----
 
-# Then run the shell
-./your_program.sh
-```
+## \#\# Future Enhancements
 
-## Limitations
-
-- No background job control (`&`, `jobs`, `fg`, `bg`)
-- Limited I/O redirection (only basic output redirection in echo)
-- No command substitution or variable expansion
-- No wildcard/glob expansion
-- No complex control structures (if, while, for)
-
-## Development
-
-### Code Organization
-- **shell.h**: All function declarations and class definitions
-- **main.cpp**: Main shell loop and built-in command implementations
-- **completion.cpp**: Tab completion system using readline
-- **parser.cpp**: Command parsing, tokenization, and utility functions
-- **pipeline.cpp**: Command execution, pipeline handling, and process management
-- **history.cpp**: History class implementation with file I/O
-
-### Adding New Built-in Commands
-1. Add command name to the `commands` set in main.cpp
-2. Add command handling logic in the main loop
-3. Update tab completion in completion.cpp if needed
-
-## Future Enhancements
-
-- [ ] Job control support
-- [ ] Variable expansion and substitution
-- [ ] Wildcard/glob pattern matching
-- [ ] Configuration file support
-- [ ] Syntax highlighting
-- [ ] Command aliases
-
----
+  * [ ] Add support for job control.
+  * [ ] Implement variable expansion and substitution.
+  * [ ] Introduce command aliases and a configuration file (e.g., `.cppshellrc`).
+  * [ ] Add syntax highlighting for a better user experience.
 
