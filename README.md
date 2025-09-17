@@ -1,4 +1,4 @@
-# C++ Shell Project 🚀
+# C++ Shell Project 
 
 A feature-rich, Unix-like shell developed in C++ that supports command execution, pipelines, I/O redirection, history management, and tab completion.
 
